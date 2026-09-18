@@ -1,10 +1,5 @@
-/* content script は manifest に静的に書かず、ここから登録する。
-   オフにしたサイトでは登録から外すので、CSSもJSも一切入らない。
-   登録内容はブラウザ側に保存されるので、起動のたびにここを通る必要はない。 */
-
 const MATCHES = ['<all_urls>'];
 
-/* 崩れるとユーザーが先に進めなくなる画面。認証と決済のiframeだけ外す。 */
 const EXCLUDE = [
   'https://www.google.com/recaptcha/*',
   'https://recaptcha.google.com/*',
@@ -33,8 +28,6 @@ function state() {
   return chrome.storage.local.get(DEFAULTS);
 }
 
-/* マッチパターンのホストにはポートを書けないので、サイトの区別はホスト名で行う。
-   http と https、ポート違いはまとめて同じサイトとして扱う。 */
 function hostOf(url) {
   try {
     const u = new URL(url);
@@ -65,7 +58,7 @@ async function sync() {
   try {
     await chrome.scripting.registerContentScripts(scripts);
   } catch (e) {
-    /* matchOriginAsFallback を受け付けない版でも、本体は動かす */
+
     try {
       await chrome.scripting.registerContentScripts(scripts.map((s) => {
         const copy = Object.assign({}, s);

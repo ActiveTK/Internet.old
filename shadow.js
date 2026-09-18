@@ -1,8 +1,3 @@
-/* Shadow DOM の中には content script のCSSが届かないので、
-   attachShadow を捕まえて retro.css を入れる。
-   link 要素と adoptedStyleSheets の両方を使う。
-   前者は adoptedStyleSheets を丸ごと差し替える実装 (Lit など) に、
-   後者は innerHTML で中身を消す実装に、それぞれ耐えるため。 */
 (function () {
   if (!Element.prototype.attachShadow) return;
 
@@ -44,8 +39,6 @@
       });
   }
 
-  /* この MAIN world スクリプトと、URLを書き込む bridge.js (ISOLATED) の
-     実行順は保証されていない。先に来てしまった分は溜めて後から入れる。 */
   function poll() {
     if (timer) return;
     var tries = 0;
