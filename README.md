@@ -2,7 +2,7 @@
 
 任意のサイトの見た目を90年代風に変えるChrome/Edge拡張機能。色と書体だけを上書きするので、要素の配置も機能もそのまま動く。
 
-もとはMITM型のHTTPプロキシだったが、ルート証明書を全員に入れてもらう必要があり公開できないため、拡張機能に置き換えた。プロキシ版はgitの履歴に残っている。
+もとはMITM型のHTTPプロキシだったが、ルート証明書を全員に入れてもらう必要があり公開できないため、拡張機能に置き換えた。
 
 ## 導入
 
@@ -55,9 +55,7 @@ content script は manifest に静的に書かず、`background.js` から `chro
 | `shadow.js` | Shadow DOM にCSSを届ける |
 | `overlay.js` | CSSでは判定できない要素に印を付ける |
 | `_locales/` | 名前と説明文 |
-| `privacy.html` | プライバシーポリシー (公開用) |
-| `store/listing.md` | ストア掲載情報 |
-| `build.ps1` | 提出用zipの作成 |
+| `build.ps1` | 配布用zipの作成 |
 
 ## ビルド
 

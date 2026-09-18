@@ -1,4 +1,4 @@
-# ストア提出用のzipを作る。配布に不要なファイルは入れない。
+# 配布用のzipを作る。配布に不要なファイルは入れない。
 $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
 
