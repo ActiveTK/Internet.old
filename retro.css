@@ -1,0 +1,128 @@
+/* Internet.old
+   レイアウトに関わるプロパティ(display, position, width, margin, flex, grid など)には
+   触れず、色・書体・装飾だけを上書きする。
+   @layer に入れた !important はレイヤー外の !important より強いので、
+   サイト側が !important を使っていても勝てる。 */
+
+@layer internet-old {
+
+html { color-scheme: light !important; }
+
+body {
+  background-color: #c0c0c0 !important;
+  background-image: none !important;
+  color: #000000 !important;
+}
+
+/* 擬似要素にはアイコンフォントが入っていることが多いので書体は変えない。
+   変えると豆腐(□)になる。 */
+*:not([data-internet-old-icon]) { font-family: "Times New Roman", "MS PGothic", Osaka, serif !important; }
+
+/* background-image は消さない。サイトが画像の表示に使っていることがある
+   (Xのアバターや写真など)。グラデーションは残るが、画像が消えるよりまし。
+   border-color も変えない。三角形を枠線で描く手法を潰してしまう。 */
+*, *::before, *::after {
+  color: #000000 !important;
+  -webkit-text-fill-color: currentColor !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  transition: none !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  mix-blend-mode: normal !important;
+  font-variation-settings: normal !important;
+}
+
+a { text-decoration: underline !important; }
+a:link, a:link *, a:link *::before, a:link *::after { color: #0000ee !important; }
+a:visited, a:visited *, a:visited *::before, a:visited *::after { color: #551a8b !important; }
+a:active, a:active * { color: #ff0000 !important; }
+a img { outline: 2px solid #0000ee !important; outline-offset: -2px !important; }
+
+:focus { outline: 1px dotted #000000 !important; }
+
+/* 白いSVGロゴが灰色の背景に埋もれるのを防ぐ。
+   fill を属性で指定しているものだけ拾える。 */
+[fill="#fff"], [fill="#FFF"], [fill="#ffffff"], [fill="#FFFFFF"], [fill="white"] { fill: #000000 !important; }
+[stroke="#fff"], [stroke="#FFF"], [stroke="#ffffff"], [stroke="#FFFFFF"], [stroke="white"] { stroke: #000000 !important; }
+[data-internet-old-white] { fill: #000000 !important; }
+
+/* mask で描くアイコンは背景色が絵になる。透明にすると消えてしまう。 */
+[data-internet-old-mask] { background-color: #000000 !important; }
+
+/* 背景を透明にすると、浮いている要素の文字が下の文字と重なって読めなくなる。
+   役割が分かるものだけ不透明に戻す。 */
+dialog, [role="dialog"], [role="alertdialog"], [aria-modal="true"],
+[role="menu"], [role="listbox"], [role="tooltip"], [data-internet-old-panel] {
+  background-color: #c0c0c0 !important;
+}
+dialog, [role="dialog"], [role="alertdialog"], [aria-modal="true"] {
+  border: 2px outset #dfdfdf !important;
+}
+/* 同じ灰色のままだと本文との境目が分からないので枠を描く。
+   outline なら大きさが変わらない。 */
+[data-internet-old-panel] {
+  outline: 2px outset #dfdfdf !important;
+  outline-offset: -2px !important;
+}
+[role="tooltip"], [role="listbox"] { background-color: #ffffff !important; }
+
+/* overlay.js が印を付けた、画面いっぱいの背景画像 */
+[data-internet-old-flat] { background-image: none !important; }
+
+button, input, select, textarea {
+  box-sizing: border-box !important;
+  background-image: none !important;
+  color: #000000 !important;
+  background-color: #c0c0c0 !important;
+  border-width: 2px !important;
+  border-style: outset !important;
+  border-color: #dfdfdf !important;
+}
+input:not([type]), input[type="text"], input[type="search"], input[type="email"],
+input[type="password"], input[type="url"], input[type="tel"], input[type="number"],
+input[type="date"], textarea, select {
+  background-color: #ffffff !important;
+  border-style: inset !important;
+}
+/* サイト側が appearance: none で作り替えていても、当時の部品に戻す */
+input[type="checkbox"], input[type="radio"], select {
+  appearance: auto !important;
+  -webkit-appearance: auto !important;
+}
+input[type="checkbox"], input[type="radio"] {
+  background-color: initial !important;
+  border-width: initial !important;
+  border-style: initial !important;
+  border-color: initial !important;
+}
+button:active, input[type="submit"]:active, input[type="button"]:active { border-style: inset !important; }
+
+hr { border-color: #c0c0c0 !important; border-style: groove !important; }
+fieldset { border-width: 2px !important; border-style: groove !important; border-color: #c0c0c0 !important; }
+table[border] { border-style: outset !important; border-color: #c0c0c0 !important; }
+table[border] td, table[border] th { border-style: inset !important; border-color: #c0c0c0 !important; }
+
+/* 標準プロパティを併記するとChromeは擬似要素を無視するのでFirefoxだけに当てる */
+@supports not selector(::-webkit-scrollbar) {
+  html { scrollbar-color: #c0c0c0 #dfdfdf; }
+}
+::-webkit-scrollbar { width: 16px; height: 16px; }
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background: #dfdfdf; }
+::-webkit-scrollbar-thumb, ::-webkit-scrollbar-button {
+  background: #c0c0c0;
+  border: 2px outset #dfdfdf;
+}
+::-webkit-scrollbar-button:start:increment,
+::-webkit-scrollbar-button:end:decrement { display: none; }
+::-webkit-scrollbar-button { display: block; height: 16px; width: 16px; background-repeat: no-repeat; background-position: center; }
+::-webkit-scrollbar-button:vertical:decrement { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='7' height='4'><path d='M3.5 0L7 4H0z'/></svg>"); }
+::-webkit-scrollbar-button:vertical:increment { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='7' height='4'><path d='M3.5 4L0 0h7z'/></svg>"); }
+::-webkit-scrollbar-button:horizontal:decrement { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='7'><path d='M0 3.5L4 0v7z'/></svg>"); }
+::-webkit-scrollbar-button:horizontal:increment { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='7'><path d='M4 3.5L0 7V0z'/></svg>"); }
+
+}

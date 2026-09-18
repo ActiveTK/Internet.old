@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<style>
+  body {
+    width: 230px;
+    margin: 0;
+    padding: 12px;
+    background: #c0c0c0;
+    color: #000;
+    font: 13px "Segoe UI", system-ui, sans-serif;
+  }
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    cursor: pointer;
+  }
+  label.off { color: #707070; cursor: default; }
+  input { margin: 0; }
+  hr { border: 0; border-top: 1px solid #909090; margin: 8px 0; }
+  #host {
+    display: block;
+    padding-left: 24px;
+    color: #505050;
+    font-size: 11px;
+    word-break: break-all;
+  }
+</style>
+</head>
+<body>
+  <label id="allRow"><input type="checkbox" id="all"><span id="allText"></span></label>
+  <hr>
+  <label id="siteRow"><input type="checkbox" id="site"><span id="siteText"></span></label>
+  <span id="host"></span>
+  <script src="popup.js"></script>
+</body>
+</html>

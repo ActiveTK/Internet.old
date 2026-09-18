@@ -1,0 +1,9 @@
+node_modules/
+*.log
+*.tmp
+build/
+
+# 内部文書 (公開しない)
+CLAUDE.md
+privacy.html
+store/listing.md
