@@ -1,6 +1,6 @@
 {
   "extName": { "message": "Internet.old" },
-  "extDesc": { "message": "Restyles any website to look like the 1990s. Layout and behavior stay as they are." },
+  "extDesc": { "message": "Restyles every website to look like the 1990s, with functionality untouched." },
   "popupAll": { "message": "Apply to all sites" },
   "popupSite": { "message": "Apply to this site" },
   "popupNoSite": { "message": "Not available on this page" }
