@@ -1,6 +1,6 @@
 {
   "extName": { "message": "Internet.old" },
-  "extDesc": { "message": "任意のサイトの見た目を90年代風に変える。配置と機能はそのまま。" },
+  "extDesc": { "message": "機能はそのまま、全てのサイトの見た目を90年代風に変えます。" },
   "popupAll": { "message": "すべてのサイトに適用" },
   "popupSite": { "message": "このサイトに適用" },
   "popupNoSite": { "message": "このページには適用できない" }
