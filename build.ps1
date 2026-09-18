@@ -1,4 +1,4 @@
-# 配布用のzipを作る。配布に不要なファイルは入れない。
+# zipにまとめる。拡張機能の動作に不要なファイルは入れない。
 $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
 
